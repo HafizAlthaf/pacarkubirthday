@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Najmah Oktavia 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Fredoka', 'Plus Jakarta Sans', sans-serif;
+            user-select: none;
+        }
+
+        body {
+            background: radial-gradient(circle at center, #d9048e 0%, #610038 50%, #15000b 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .click-sparkle {
+            position: fixed;
+            pointer-events: none;
+            font-size: 1.5rem;
+            animation: sparkleAnim 0.8s ease-out forwards;
+            z-index: 9999;
+        }
+        @keyframes sparkleAnim {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
+            100% { transform: translate(-50%, -100px) scale(1.3); opacity: 0; }
+        }
+
+        .bg-floating {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .float-item {
+            position: absolute;
+            bottom: -50px;
+            font-size: 1.8rem;
+            animation: floatUp 8s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page {
+            display: none;
+            width: 100%;
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .page.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.97); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 8px;
+            text-shadow: 0 0 15px #ff00a0;
+        }
+
+        .title-cursive {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.8rem;
+            color: #ffffff;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px #ff0099;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        p.subtitle {
+            color: #fbcfe8;
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 24px;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+        }
+
+        .pin-box {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            text-align: center;
+            letter-spacing: 12px;
+            font-size: 1.8rem;
+            padding: 14px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid #ff44b7;
+            color: #fff;
+            outline: none;
+            box-shadow: 0 0 15px rgba(255, 68, 183, 0.4);
+        }
+
+        .btn {
+            width: 100%;
+            max-width: 320px;
+            background: linear-gradient(135deg, #ff2a9d 0%, #a8005b 100%);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 20px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 42, 157, 0.5);
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 0 25px rgba(255, 42, 157, 0.8);
+        }
+
+        .music-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 42, 157, 0.3);
+            border: 2px solid #ff44b7;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 99;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 15px rgba(255, 0, 160, 0.4);
+            transition: transform 0.3s;
+        }
+        .music-toggle.playing {
+            animation: spin 3s linear infinite;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        .pet-mascot {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 99;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .pet-bubble {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 8px 14px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            display: none;
+            max-width: 150px;
+            text-align: center;
+            animation: fadeIn 0.3s ease;
+        }
+        .pet-img {
+            width: 60px;
+            height: 60px;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        .love-choice-box {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            position: relative;
+            width: 100%;
+            height: 120px;
+        }
+        #btnNo {
+            position: absolute;
+            width: 140px;
+            background: #444;
+            box-shadow: none;
+            transition: all 0.2s ease;
+        }
+
+        /* Cake Candle Styles */
+        .cake-box {
+            position: relative;
+            cursor: pointer;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .cake-emoji { font-size: 6rem; position: relative; display: inline-block; }
+        .flame {
+            position: absolute;
+            top: -10px; left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.8rem;
+            animation: flicker 0.6s infinite alternate;
+        }
+        @keyframes flicker { 0% { opacity: 1; transform: translateX(-50%) scale(1); } 100% { opacity: 0.7; transform: translateX(-50%) scale(1.2); } }
+
+        /* Wheel Styles */
+        .wheel-container {
+            position: relative;
+            width: 260px; height: 260px;
+            margin: 15px auto;
+        }
+        #wheelCanvas {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            border: 4px solid #ff44b7;
+            box-shadow: 0 0 20px rgba(255, 0, 160, 0.5);
+            transition: transform 4s cubic-bezier(0.15, 0.99, 0.15, 0.99);
+        }
+        .wheel-arrow {
+            position: absolute;
+            top: -15px; left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem; z-index: 10;
+        }
+
+        /* Photobooth Frame */
+        .photobooth-box {
+            position: relative;
+            width: 280px; height: 280px;
+            border: 8px solid #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(255, 68, 183, 0.5);
+            margin: 15px 0;
+            background: #000;
+        }
+        .photobooth-box video {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        .photobooth-overlay {
+            position: absolute;
+            bottom: 10px; width: 100%;
+            text-align: center;
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.5rem; color: #ff66c4;
+            text-shadow: 0 0 5px #000;
+        }
+
+        /* Constellation Map */
+        .sky-card {
+            background: radial-gradient(circle, #1a0033 0%, #050010 100%);
+            border: 2px solid #ff44b7;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            width: 100%; max-width: 450px;
+            margin: 15px 0;
+            box-shadow: 0 0 20px rgba(255, 0, 160, 0.3);
+        }
+
+        .mood-container { display: flex; gap: 15px; justify-content: center; margin: 15px 0; }
+        .mood-btn { font-size: 2.2rem; background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); border-radius: 50%; width: 60px; height: 60px; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: transform 0.2s; }
+        .mood-btn:hover { transform: scale(1.2); border-color: #ff66c4; }
+
+        .scratch-box { position: relative; width: 280px; height: 140px; margin: 15px auto; border-radius: 16px; overflow: hidden; border: 2px solid #ff44b7; box-shadow: 0 0 20px rgba(255, 0, 160, 0.3); }
+        .scratch-content { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 10px; color: #ff66c4; font-weight: bold; font-size: 1rem; }
+        canvas#scratchCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer; }
+
+        .counter-box { background: rgba(0, 0, 0, 0.4); border: 2px solid #ff44b7; border-radius: 20px; padding: 15px 25px; text-align: center; margin: 15px 0 25px 0; box-shadow: 0 0 20px rgba(255, 0, 160, 0.3); }
+        .counter-timer { font-size: 1.2rem; font-weight: bold; color: #ff66c4; margin-top: 5px; }
+
+        .quiz-card { background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(255, 68, 183, 0.4); border-radius: 20px; padding: 20px; width: 100%; max-width: 500px; margin-bottom: 15px; }
+        .quiz-option { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; padding: 12px; margin: 8px 0; cursor: pointer; transition: all 0.2s ease; text-align: left; }
+        .quiz-option:hover { background: rgba(255, 68, 183, 0.4); border-color: #ff66c4; }
+
+        .polaroid-card { background: #ffffff; padding: 10px 10px 20px 10px; border-radius: 8px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; }
+        .polaroid-card:hover { transform: translateY(-12px) scale(1.1) rotate(0deg) !important; z-index: 20; box-shadow: 0 15px 30px rgba(255, 0, 160, 0.6); }
+        .polaroid-card img { width: 100%; height: 140px; object-fit: cover; border-radius: 4px; }
+        .polaroid-caption { color: #333; font-family: 'Great Vibes', cursive; font-size: 1.4rem; text-align: center; margin-top: 8px; font-weight: bold; }
+
+        .gift-container { font-size: 5rem; cursor: pointer; animation: bounce 1.5s infinite; margin: 20px 0; transition: transform 0.3s; }
+        .gift-container:hover { transform: scale(1.2); }
+
+        .matrix-overlay { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #0d020a; z-index: 999; flex-direction: column; justify-content: center; align-items: center; }
+        .matrix-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.15; pointer-events: none; }
+        .big-text { font-size: 3.8rem; font-weight: 800; color: #ff66c4; text-shadow: 0 0 20px #ff00a0; letter-spacing: 2px; text-align: center; text-transform: uppercase; animation: pulseGlow 1.2s infinite alternate; }
+        @keyframes pulseGlow { from { transform: scale(0.98); } to { transform: scale(1.05); } }
+        .cute-character { width: 130px; height: 130px; margin: 10px 0; animation: bounce 2s infinite ease-in-out; border-radius: 15px; object-fit: contain; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        .folders-grid { display: flex; justify-content: center; align-items: center; gap: 40px; width: 100%; margin-bottom: 25px; flex-wrap: wrap; }
+        .folder-card { background: transparent; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; text-align: center; transition: all 0.3s ease; }
+        .folder-card:hover { transform: translateY(-10px) scale(1.08); }
+        .folder-icon-img { width: 100px; height: 100px; object-fit: contain; filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.7)); margin-bottom: 12px; }
+        .folder-info h3 { font-family: 'Great Vibes', cursive; color: #ffffff; font-size: 2rem; text-shadow: 0 0 10px #ff00a0; margin-bottom: 4px; }
+        .folder-info p { color: #fbcfe8; font-size: 0.8rem; max-width: 180px; line-height: 1.3; }
+
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); z-index: 100; justify-content: center; align-items: center; padding: 20px; }
+        .modal-content { background: rgba(30, 0, 20, 0.85); border: 2px solid #ff44b7; border-radius: 28px; width: 95%; max-width: 850px; max-height: 85vh; padding: 24px; position: relative; box-shadow: 0 0 35px rgba(255, 0, 160, 0.4); display: flex; flex-direction: column; align-items: center; overflow: hidden; }
+        .close-modal { position: absolute; top: 14px; right: 20px; font-size: 2rem; color: #ff44b7; cursor: pointer; font-weight: bold; z-index: 10; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; width: 100%; margin-top: 15px; overflow-y: auto; max-height: 70vh; padding: 10px; }
+
+        .playlist-container { width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 15px; }
+        .spotify-card { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px; padding: 14px; }
+        .song-title { color: #ff66c4; font-weight: 700; font-size: 0.95rem; }
+        .song-artist { color: #fbcfe8; font-size: 0.8rem; margin-bottom: 8px; }
+        audio { width: 100%; height: 36px; }
+
+        .letter-body { background: rgba(0, 0, 0, 0.4); border-radius: 20px; padding: 24px; border: 2px solid rgba(255, 68, 183, 0.4); font-size: 0.95rem; line-height: 1.7; color: #ffe4e6; text-align: justify; width: 100%; max-width: 600px; box-shadow: 0 0 20px rgba(255, 0, 160, 0.2); }
+        .error-msg { color: #ff4d4d; font-size: 0.85rem; text-align: center; margin-top: 8px; display: none; }
+        .btn-wa { background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); box-shadow: 0 0 15px rgba(37, 211, 102, 0.4); }
+    </style>
+</head>
+<body>
+
+    <div class="bg-floating" id="bgFloating"></div>
+    <div class="music-toggle" id="musicBtn" onclick="playPopSound(); toggleMusic();">🎵</div>
+
+    <div class="pet-mascot" onclick="talkPet()">
+        <div class="pet-bubble" id="petBubble">Halo Najmah! 💖</div>
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3ZsdHBnbmhic3E4ejkxa291ZHZvaTJ6OHFlbjhyZDFmdzh3ZXBjaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/MDJ9IbxxvDUQM/giphy.gif" class="pet-img" alt="Cat Pet">
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="assets/song1.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="matrixOverlay" class="matrix-overlay">
+        <canvas id="matrixCanvas" class="matrix-bg"></canvas>
+        <div id="bigTextDisplay" class="big-text">3</div>
+    </div>
+
+    <div class="container">
+        <div id="page-1" class="page active">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3ZsdHBnbmhic3E4ejkxa291ZHZvaTJ6OHFlbjhyZDFmdzh3ZXBjaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/MDJ9IbxxvDUQM/giphy.gif" class="cute-character" alt="Cute Cat">
+            <h1>🔒 Private Access Only</h1>
+            <p class="subtitle">Masukkan 6 digit tanggal jadian kita 🥰</p>
+            <div class="pin-box">
+                <input type="password" id="pinInput" maxlength="6" placeholder="••••••">
+            </div>
+            <p id="errorMsg" class="error-msg">Eits, tanggal jadian kita sendiri masa lupa? 😜</p>
+            <button class="btn" onclick="playPopSound(); checkPin();">Unlock Memories 🔑</button>
+        </div>
+
+        <div id="page-love" class="page">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNWw4bGdxeTN6a2dqZjN2bmR6Z3ZreXE3bmlqNDlyMXRpaXljbmppdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/KztT2c4u8mYYUiMKdJ/giphy.gif" class="cute-character" alt="Love Cat">
+            <h1>Pertanyaan Penting! 🤔</h1>
+            <p class="subtitle">Jawab jujur ya, Najmah sayang sama aku nggak? 😜</p>
+            
+            <div class="love-choice-box" id="loveArea">
+                <button class="btn" style="width: 140px; margin: 0;" onclick="playPopSound(); nextPage('candle');">Sayang Bgt! 💖</button>
+                <button class="btn" id="btnNo" onmouseover="escapeBtn()" onclick="escapeBtn()">Nggak 😜</button>
+            </div>
+        </div>
+
+        <div id="page-candle" class="page">
+            <h1>🎂 Make a Wish! 🎂</h1>
+            <p class="subtitle">Klik/tap lilinya buat tiup lilin ultah kamu! ✨</p>
+            
+            <div class="cake-box" onclick="blowCandle()">
+                <div class="cake-emoji">
+                    🎂
+                    <span class="flame" id="candleFlame">🔥</span>
+                </div>
+            </div>
+            <p id="candleStatus" style="color: #ff66c4; font-weight: bold; margin-bottom: 15px;">Lilin masih menyala 🔥</p>
+            <button class="btn" id="btnAfterCandle" style="display: none;" onclick="playPopSound(); nextPage(2);">Lanjut Ke Dashboard 🚀</button>
+        </div>
+
+        <div id="page-2" class="page">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3ZsdHBnbmhic3E4ejkxa291ZHZvaTJ6OHFlbjhyZDFmdzh3ZXBjaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/MDJ9IbxxvDUQM/giphy.gif" class="cute-character" alt="Birthday Bunny">
+            <h1>🎂 Happy 19th Birthday! 🎂</h1>
+            <p class="subtitle">Welcome to your special birthday vault, Najmah Oktavia! 💕</p>
+            
+            <div class="counter-box">
+                <p style="font-size: 0.85rem; color: #fbcfe8;">Kita udah bareng-bareng selama:</p>
+                <div class="counter-timer" id="relationshipCounter">Calculating...</div>
+            </div>
+
+            <div class="sky-card">
+                <h3 style="color: #ff66c4; margin-bottom: 5px;">🌌 Langit Malam Jadian Kita</h3>
+                <p style="font-size: 0.8rem; color: #fbcfe8;">10 Agustus 2026 - 19.10 WIB</p>
+                <div style="font-size: 2.5rem; margin: 10px 0;">✨ 🌕 💫 🪐 ✨</div>
+                <p style="font-size: 0.85rem; color: #ffe4e6; font-style: italic;">"Di bawah langit yang sama, kita mulai cerita indah ini."</p>
+            </div>
+
+            <p style="font-size: 0.9rem; color: #ffe4e6; margin-top: 5px;">Gimana perasaan kamu buka web ini?</p>
+            <div class="mood-container">
+                <div class="mood-btn" onclick="playPopSound(); selectMood('🥺')">🥺</div>
+                <div class="mood-btn" onclick="playPopSound(); selectMood('🤣')">🤣</div>
+                <div class="mood-btn" onclick="playPopSound(); selectMood('🥰')">🥰</div>
+            </div>
+
+            <button class="btn" onclick="playPopSound(); nextPage('wheel');">Putar Roda Kencan 🎡</button>
+        </div>
+
+        <div id="page-wheel" class="page">
+            <h1>🎡 Roda Keberuntungan Date</h1>
+            <p class="subtitle">Putar rodanya buat tentuin rencana kencan kita berikutnya!</p>
+            
+            <div class="wheel-container">
+                <div class="wheel-arrow">👇</div>
+                <canvas id="wheelCanvas" width="260" height="260"></canvas>
+            </div>
+            
+            <button class="btn" onclick="spinWheel()">SPIN NOW! 🚀</button>
+            <p id="wheelResult" style="color: #ff66c4; font-size: 1.1rem; font-weight: bold; margin-top: 15px; text-align: center; height: 30px;"></p>
+            
+            <button class="btn" onclick="playPopSound(); nextPage('photobooth');" style="margin-top: 10px;">Coba Photobooth 📸</button>
+        </div>
+
+        <div id="page-photobooth" class="page">
+            <h1>📸 Photobooth Birthday</h1>
+            <p class="subtitle">Senyumnya mana??? ciiiissss</p>
+            
+            <div class="photobooth-box">
+                <video id="webcamVideo" autoplay playsinline></video>
+                <div class="photobooth-overlay">Najmah 19th Birthday 💕</div>
+            </div>
+
+            <div style="display: flex; gap: 10px; width: 100%; max-width: 320px; margin-top: 10px;">
+                <button class="btn" onclick="startCamera()" style="margin-top: 0; padding: 12px;">Buka Kamera 📷</button>
+                <button class="btn" onclick="takeSnap()" style="margin-top: 0; padding: 12px; background: linear-gradient(135deg, #ff007f 0%, #a8005b 100%);">Snap Foto! 📸</button>
+            </div>
+
+            <div id="photoResultArea" style="display: none; flex-direction: column; align-items: center; margin-top: 20px;">
+                <p style="color: #ff66c4; font-weight: bold; margin-bottom: 8px;">Hasil Foto Kamu ✨</p>
+                <canvas id="snapCanvas" style="display: none;"></canvas>
+                <img id="capturedImage" style="width: 260px; border: 6px solid #fff; border-radius: 16px; box-shadow: 0 0 20px rgba(255,68,183,0.6);" />
+                <a id="downloadBtn" download="najmah-birthday-photobooth.png" class="btn" style="margin-top: 10px; padding: 10px; font-size: 0.9rem; width: 200px;">Simpan Foto 💾</a>
+            </div>
+
+            <button class="btn" onclick="playPopSound(); nextPage('quiz');" style="margin-top: 20px;">Lanjut Ke Love Quiz 🎯</button>
+        </div>
+
+        <div id="page-quiz" class="page">
+            <h1>🎯 Love Quiz Time!</h1>
+            <p class="subtitle">Jawab 3 pertanyaan ini buat buka folder rahasia 😜</p>
+
+            <div class="quiz-card" id="quizCard">
+                <h3 id="quizQuestion" style="color: #ff66c4; margin-bottom: 12px; text-align: center;"></h3>
+                <div id="quizOptions"></div>
+            </div>
+        </div>
+
+        <div id="page-3" class="page">
+            <h1 class="title-cursive">Choose the Surprise</h1>
+
+            <div class="folders-grid">
+                <div class="folder-card" onclick="playPopSound(); openModal('modal-photos');">
+                    <img src="https://cdn-icons-png.flaticon.com/512/685/685655.png" class="folder-icon-img" alt="Camera">
+                    <div class="folder-info">
+                        <h3>Our Memories</h3>
+                        <p>Our cute & funny pictures 💕</p>
+                    </div>
+                </div>
+
+                <div class="folder-card" onclick="playPopSound(); openModal('modal-videos');">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2088/2088617.png" class="folder-icon-img" alt="Clock">
+                    <div class="folder-info">
+                        <h3>Memorable Videos</h3>
+                        <p>Our cute & Funny videos 🎥</p>
+                    </div>
+                </div>
+
+                <div class="folder-card" onclick="playPopSound(); openModal('modal-spotify');">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1222/1222095.png" class="folder-icon-img" alt="Vinyl">
+                    <div class="folder-info">
+                        <h3>Playlist For You</h3>
+                        <p>aku nyimpen kamu di lagu ini 🎧</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn" onclick="playPopSound(); nextPage(4);">Baca Surat Khusus 💌</button>
+        </div>
+
+        <div id="page-4" class="page">
+            <h1>📜 Letter For You</h1>
+            <p class="subtitle">from your boyfriend ❤️</p>
+            <div class="letter-body">
+                <p><b>hai sayaaaaaaanggggg,</b></p>
+                <p>Selamat ulang tahun yang ke-19 ya, cantik! Selamat memasuki usia baru yang penuh hal-hal indah. Terima kasih banyak udah lahir ke dunia ini, dan terima kasih udah memilih untuk tumbuh serta berbagi banyak momen manis bareng aku.</p>
+                <p>Setiap kali dengerin lagu-lagu favorit kita, dari Backstreet Boys sampai LANY, aku selalu diingetin betapa beruntungnya aku punya kamu. Senyum kamu, cara kamu ketawa, bahkan tingkah lucu kamu selalu sukses bikin hari-hariku jauh lebih berwarna.</p>
+                <p>Di usiamu yang ke-19 ini, aku berdoa semoga semua impian kamu satu per satu bisa terwujud. Semoga kamu makin bahagia, makin sehat, dan tetap jadi Najmah yang ceria dan hangat.</p>
+                <p style="text-align: center; margin-top: 10px;"><i>Happy 19th Birthday, my love! 💖</i></p>
+            </div>
+
+            <p style="margin-top: 20px; font-size: 0.85rem; color: #fbcfe8;">Gosok kupon di bawah pakai jari/mouse! 👇</p>
+            <div class="scratch-box">
+                <div class="scratch-content">
+                    💌 PESAN RAHASIA 💌<br>
+                    <span style="font-size: 0.8rem; color: #fff;">"Kamu itu hal terbaik yang pernah hadir di hidup aku. Love you 3000! 💖"</span>
+                </div>
+                <canvas id="scratchCanvas" width="280" height="140"></canvas>
+            </div>
+
+            <button class="btn" onclick="playPopSound(); nextPage('gift');">Buka Kado Spesial 🎁</button>
+        </div>
+
+        <div id="page-gift" class="page">
+            <h1>🎁 Special Gift For You</h1>
+            <p class="subtitle">Klik kotak kado di bawah buat ambil hadiah kamu!</p>
+            
+            <div class="gift-container" id="giftBox" onclick="playPopSound(); openGift();">🎁</div>
+            
+            <div class="letter-body" id="giftResult" style="display: none; text-align: center;">
+                <h2 style="color: #ff66c4; margin-bottom: 8px;">👑 CONGRATULATIONS! 👑</h2>
+                <p style="font-size: 1.1rem; color: #fff; font-weight: bold; margin-bottom: 8px;">Kamu Dapat Voucher:</p>
+                <div style="background: rgba(255, 68, 183, 0.3); padding: 12px; border-radius: 12px; border: 1px dashed #ff66c4; font-size: 1.2rem; color: #ffe4e6; font-weight: bold;">
+                    "BEBAS REQUEST APAPUN 1 HARI 🎉"
+                </div>
+                <button class="btn" onclick="playPopSound(); nextPage(5);" style="margin-top: 20px;">Lanjut Ke Akhir 🚀</button>
+            </div>
+        </div>
+
+        <div id="page-5" class="page">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNWw4bGdxeTN6a2dqZjN2bmR6Z3ZreXE3bmlqNDlyMXRpaXljbmppdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/KztT2c4u8mYYUiMKdJ/giphy.gif" class="cute-character" alt="Heart Love">
+            <h1>🎉 Yaaaaay! 🎉</h1>
+            <p class="subtitle">Makasih udah liat dari awal sampai akhir!</p>
+            <div class="letter-body" style="text-align: center;">
+                <h3 style="color: #ff66c4; margin-bottom: 8px;">Lanjut call an yuk!</h3>
+                <p style="text-align: center;">Sayaaaanggg aku kangennnnn, call aku yaaa SEKARANG gaboleh nanti!! 🥰</p>
+            </div>
+            <a href="https://wa.me/6285727962143?text=Halooo%20selamat%20ulang%20tahun!%20Yuk%20video%20call%20sekarang!%20🥰" target="_blank" class="btn btn-wa" onclick="playPopSound()">
+                📞 Call Me Now on WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <div id="modal-photos" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="playPopSound(); closeModal('modal-photos');">&times;</span>
+            <h2 style="color: #ff66c4; margin-bottom: 10px;">📸 Our Memories</h2>
+            <div class="gallery-grid">
+                <div class="polaroid-card" style="transform: rotate(-3deg);"><img src="assets/foto1.jpg"><div class="polaroid-caption">First Date</div></div>
+                <div class="polaroid-card" style="transform: rotate(2deg);"><img src="assets/foto2.jpg"><div class="polaroid-caption">Day 1 Jadian</div></div>
+                <div class="polaroid-card" style="transform: rotate(-2deg);"><img src="assets/foto3.jpg"><div class="polaroid-caption">Ocean Park</div></div>
+                <div class="polaroid-card" style="transform: rotate(3deg);"><img src="assets/foto4.jpg"><div class="polaroid-caption">Nonton Avengers Endgame</div></div>
+                <div class="polaroid-card" style="transform: rotate(-1deg);"><img src="assets/foto5.jpg"><div class="polaroid-caption">Batik Day</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-videos" class="modal">
+        <div class="modal-content" style="max-width: 480px; padding: 20px;">
+            <span class="close-modal" onclick="playPopSound(); closeModal('modal-videos');">&times;</span>
+            <h2 style="color: #ff66c4; margin-bottom: 5px;">🎬 Memorable Videos</h2>
+            <p style="font-size: 0.8rem; color: #fbcfe8; margin-bottom: 15px;">Our funny & cute videos 💕</p>
+
+            <div style="position: relative; width: 100%; max-width: 280px; background: #1a0014; border: 4px solid #ff44b7; border-radius: 24px; padding: 12px; box-shadow: 0 0 25px rgba(255, 68, 183, 0.4); display: flex; flex-direction: column; align-items: center;">
+                <video id="myVideo" controls style="width: 100%; height: 360px; object-fit: cover; border-radius: 16px; background: #000;">
+                    <source id="videoSource" src="assets/video1.mp4" type="video/mp4">
+                </video>
+
+                <p id="videoCaption" style="font-family: 'Great Vibes', cursive; font-size: 1.4rem; color: #ff66c4; margin-top: 10px; text-align: center; text-shadow: 0 0 5px rgba(0,0,0,0.8);">"Momen kecup gemes 💖"</p>
+
+                <div style="display: flex; justify-content: space-between; width: 100%; margin-top: 10px; align-items: center;">
+                    <button onclick="playPopSound(); prevVideo();" style="background: rgba(255,68,183,0.3); border: 1px solid #ff44b7; color: white; border-radius: 50%; width: 36px; height: 36px; cursor: pointer; font-weight: bold;">❮</button>
+                    <span id="videoCounter" style="font-size: 0.8rem; color: #fbcfe8; font-weight: bold;">1 / 3</span>
+                    <button onclick="playPopSound(); nextVideo();" style="background: rgba(255,68,183,0.3); border: 1px solid #ff44b7; color: white; border-radius: 50%; width: 36px; height: 36px; cursor: pointer; font-weight: bold;">❯</button>
+                </div>
+            </div>
+
+            <p style="font-size: 0.8rem; color: #ffe4e6; margin-top: 15px; margin-bottom: 8px;">Kirim reaksi buat video ini:</p>
+            <div style="display: flex; gap: 12px;">
+                <button class="mood-btn" style="width: 45px; height: 45px; font-size: 1.5rem;" onclick="triggerReaction('💖')">💖</button>
+                <button class="mood-btn" style="width: 45px; height: 45px; font-size: 1.5rem;" onclick="triggerReaction('🤣')">🤣</button>
+                <button class="mood-btn" style="width: 45px; height: 45px; font-size: 1.5rem;" onclick="triggerReaction('🥺')">🥺</button>
+                <button class="mood-btn" style="width: 45px; height: 45px; font-size: 1.5rem;" onclick="triggerReaction('🔥')">🔥</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-spotify" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="playPopSound(); closeModal('modal-spotify');">&times;</span>
+            <h2 style="color: #ff66c4; margin-bottom: 12px;">🎵 Playlist For You</h2>
+            <div class="playlist-container">
+                <div class="spotify-card"><div class="song-title">🎧 I Lay My Love On You</div><div class="song-artist">Backstreet Boys</div><audio class="playlist-audio" controls><source src="assets/song1.mp3" type="audio/mpeg"></audio></div>
+                <div class="spotify-card"><div class="song-title">🎧 u + me forever</div><div class="song-artist">Olivia Rodrigo</div><audio class="playlist-audio" controls><source src="assets/song2.mp3" type="audio/mpeg"></audio></div>
+                <div class="spotify-card"><div class="song-title">🎧 Feelings</div><div class="song-artist">Lauv</div><audio class="playlist-audio" controls><source src="assets/song3.mp3" type="audio/mpeg"></audio></div>
+                <div class="spotify-card"><div class="song-title">🎧 Saturday Night</div><div class="song-artist">LANY</div><audio class="playlist-audio" controls><source src="assets/song4.mp3" type="audio/mpeg"></audio></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const bgMusic = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        const playlistAudios = document.querySelectorAll('.playlist-audio');
+
+        // DATA VIDEO & CAROUSEL LOGIC
+        const videoList = [
+            { src: "assets/video1.mp4", caption: "Vlog nonton Avengers Endgame 💖" },
+            { src: "assets/video2.mp4", caption: "Kolam arus ocean park BSD 😜" },
+            { src: "assets/video3.mp4", caption: "Fit check batik day ✨" }
+        ];
+
+        let currentVideoIndex = 0;
+
+        function updateVideoPlayer() {
+            const video = document.getElementById('myVideo');
+            const source = document.getElementById('videoSource');
+            const caption = document.getElementById('videoCaption');
+            const counter = document.getElementById('videoCounter');
+
+            video.pause();
+            source.src = videoList[currentVideoIndex].src;
+            caption.innerText = `"${videoList[currentVideoIndex].caption}"`;
+            counter.innerText = `${currentVideoIndex + 1} / ${videoList.length}`;
+            
+            video.load();
+        }
+
+        function nextVideo() {
+            currentVideoIndex = (currentVideoIndex + 1) % videoList.length;
+            updateVideoPlayer();
+        }
+
+        function prevVideo() {
+            currentVideoIndex = (currentVideoIndex - 1 + videoList.length) % videoList.length;
+            updateVideoPlayer();
+        }
+
+        function triggerReaction(emoji) {
+            playPopSound();
+            for (let i = 0; i < 15; i++) {
+                const elem = document.createElement('div');
+                elem.className = 'click-sparkle';
+                elem.innerText = emoji;
+                elem.style.left = (Math.random() * 80 + 10) + 'vw';
+                elem.style.top = (Math.random() * 50 + 40) + 'vh';
+                document.body.appendChild(elem);
+                setTimeout(() => elem.remove(), 800);
+            }
+        }
+
+        function playPopSound() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(600, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.08);
+                gain.gain.setValueAtTime(0.3, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.08);
+                osc.connect(gain); gain.connect(ctx.destination);
+                osc.start(); osc.stop(ctx.currentTime + 0.08);
+            } catch(e) {}
+        }
+
+        document.addEventListener('click', (e) => {
+            const sparkles = ['💖', '✨', '🌸', '💕', '🥰'];
+            const elem = document.createElement('div');
+            elem.className = 'click-sparkle';
+            elem.innerText = sparkles[Math.floor(Math.random() * sparkles.length)];
+            elem.style.left = e.clientX + 'px'; elem.style.top = e.clientY + 'px';
+            document.body.appendChild(elem);
+            setTimeout(() => elem.remove(), 800);
+        });
+
+        function escapeBtn() {
+            const btn = document.getElementById('btnNo');
+            const x = Math.random() * (window.innerWidth - 160) - (window.innerWidth / 2 - 80);
+            const y = Math.random() * 100 - 50;
+            btn.style.transform = `translate(${x}px, ${y}px)`;
+        }
+
+        function blowCandle() {
+            playPopSound();
+            document.getElementById('candleFlame').style.display = 'none';
+            document.getElementById('candleStatus').innerText = "Congratulation and Happy Birthday sayaaaanggg, semoga wisk kamu terkabul yaa 🥳✨";
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+            document.getElementById('btnAfterCandle').style.display = 'block';
+        }
+
+        const wheelOptions = ["Makan Taichan Bang Jay 🍢", "Nonton Bioskop 🍿", "Beli Es Krim Luca 🍦", "Deep Talk Night ☕", "Bebas Nyuruh Aku 👑", "Jalan-jalan Sore 🛵"];
+        function drawWheel() {
+            const canvas = document.getElementById('wheelCanvas');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const numOptions = wheelOptions.length;
+            const arcSize = (2 * Math.PI) / numOptions;
+            const colors = ['#ff2a9d', '#d9048e', '#a8005b', '#ff66c4', '#ff44b7', '#800040'];
+
+            for (let i = 0; i < numOptions; i++) {
+                ctx.beginPath();
+                ctx.fillStyle = colors[i % colors.length];
+                ctx.moveTo(130, 130);
+                ctx.arc(130, 130, 130, i * arcSize, (i + 1) * arcSize);
+                ctx.fill();
+
+                ctx.save();
+                ctx.translate(130, 130);
+                ctx.rotate(i * arcSize + arcSize / 2);
+                ctx.textAlign = "right";
+                ctx.fillStyle = "#fff";
+                ctx.font = "bold 12px Fredoka";
+                ctx.fillText(wheelOptions[i], 120, 4);
+                ctx.restore();
+            }
+        }
+        let currentRotation = 0;
+        function spinWheel() {
+            playPopSound();
+            const canvas = document.getElementById('wheelCanvas');
+            const extraDegrees = Math.floor(Math.random() * 360) + 1440;
+            currentRotation += extraDegrees;
+            canvas.style.transform = `rotate(${currentRotation}deg)`;
+            
+            setTimeout(() => {
+                confetti({ particleCount: 100, spread: 60 });
+                document.getElementById('wheelResult').innerText = "Yeeeeyyyy...berarti next date kita: " + wheelOptions[Math.floor(Math.random() * wheelOptions.length)];
+            }, 4000);
+        }
+
+        function startCamera() {
+            const video = document.getElementById('webcamVideo');
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+                    video.srcObject = stream;
+                }).catch(() => alert("Kamera gak bisa diakses / izin ditolak 🙏"));
+            }
+        }
+
+        function takeSnap() {
+            playPopSound();
+            const video = document.getElementById('webcamVideo');
+            const canvas = document.getElementById('snapCanvas');
+            const img = document.getElementById('capturedImage');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const resultArea = document.getElementById('photoResultArea');
+
+            if (!video.srcObject) {
+                alert("Buka kameranya dulu yaa 📷");
+                return;
+            }
+
+            canvas.width = video.videoWidth || 640;
+            canvas.height = video.videoHeight || 480;
+            const ctx = canvas.getContext('2d');
+
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            ctx.font = 'bold 28px Great Vibes, cursive';
+            ctx.fillStyle = '#ff66c4';
+            ctx.textAlign = 'center';
+            ctx.shadowColor = 'black';
+            ctx.shadowBlur = 6;
+            ctx.fillText('Najmah 19th Birthday 💕', canvas.width / 2, canvas.height - 25);
+
+            const dataURL = canvas.toDataURL('image/png');
+            img.src = dataURL;
+            downloadBtn.href = dataURL;
+
+            resultArea.style.display = 'flex';
+            confetti({ particleCount: 50, spread: 50 });
+        }
+
+        const petTexts = ["Kok kamu bisa secantik ini sih??!! 💕", "Jangan ngambek terus yaaa 🥰", "Happy Birthday sayaaaanggg 🎂", "I LOVE UU SAYAANGGG 💖"];
+        function talkPet() {
+            playPopSound();
+            const bubble = document.getElementById('petBubble');
+            bubble.innerText = petTexts[Math.floor(Math.random() * petTexts.length)];
+            bubble.style.display = 'block';
+            setTimeout(() => { bubble.style.display = 'none'; }, 2500);
+        }
+
+        function selectMood(emoji) {
+            let msg = emoji === '🥺' ? "IHHHH KAMU TERHARU YAAA..atau sedih?? 🥺💖" : (emoji === '🤣' ? "Mantap kan boshhh web bikinan acuuu 😜" : "Bikin web beginian mah 10 menit juga jadi 💕");
+            alert(msg);
+        }
+
+        const bgFloating = document.getElementById('bgFloating');
+        const icons = ['💖', '🎈', '✨', '🌸', '💕'];
+        for (let i = 0; i < 20; i++) {
+            let item = document.createElement('div');
+            item.className = 'float-item';
+            item.innerText = icons[Math.floor(Math.random() * icons.length)];
+            item.style.left = Math.random() * 100 + 'vw';
+            item.style.animationDuration = (5 + Math.random() * 5) + 's';
+            item.style.animationDelay = Math.random() * 5 + 's';
+            bgFloating.appendChild(item);
+        }
+
+        function toggleMusic() {
+            if (bgMusic.paused) { bgMusic.play(); musicBtn.classList.add('playing'); } 
+            else { bgMusic.pause(); musicBtn.classList.remove('playing'); }
+        }
+
+        const startDate = new Date('2026-08-10T19:10:00');
+        function updateCounter() {
+            const now = new Date();
+            const diff = now - startDate;
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / 1000 / 60) % 60);
+                const seconds = Math.floor((diff / 1000) % 60);
+                document.getElementById('relationshipCounter').innerText = `${days} Hari, ${hours} Jam, ${minutes} Menit, ${seconds} Detik`;
+            } else {
+                document.getElementById('relationshipCounter').innerText = "Hari Spesial Telah Tiba! ✨";
+            }
+        }
+        setInterval(updateCounter, 1000);
+
+        function checkPin() {
+            if (document.getElementById('pinInput').value === '100826') {
+                document.getElementById('errorMsg').style.display = 'none';
+                bgMusic.play().catch(() => {});
+                musicBtn.classList.add('playing');
+                runTikTokAnimation();
+            } else {
+                document.getElementById('errorMsg').style.display = 'block';
+            }
+        }
+
+        const quizData = [
+            { q: "1. Di mana tempat first date kita???", options: ["Living World Grandwis", "Summarecon Mall", "AEON Mall"], answer: 0 },
+            { q: "2. Apa makanan favorit aku?", options: ["Seblak & Bakso", "Bebek & Taichan", "Nasi Goreng & Mie"], answer: 1 },
+            { q: "3. Kira-kira what things that i hate?", options: ["Prepare kelamaan", "Ngomong setengah-setengah", "Cakep bgt di public are without me"], answer: 1 }
+        ];
+        let currentQuiz = 0;
+        function loadQuiz() {
+            if (currentQuiz >= quizData.length) { nextPage(3); return; }
+            const q = quizData[currentQuiz];
+            document.getElementById('quizQuestion').innerText = q.q;
+            const optContainer = document.getElementById('quizOptions');
+            optContainer.innerHTML = '';
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('div');
+                btn.className = 'quiz-option'; btn.innerText = opt;
+                btn.onclick = () => {
+                    playPopSound();
+                    if (idx === q.answer) { alert("anjaayyyy bener jawabannya"); currentQuiz++; loadQuiz(); } 
+                    else { alert("yaelaaa masa salah sih sayang???"); }
+                };
+                optContainer.appendChild(btn);
+            });
+        }
+
+        function openGift() {
+            const box = document.getElementById('giftBox');
+            box.innerText = '📦';
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+            setTimeout(() => { box.style.display = 'none'; document.getElementById('giftResult').style.display = 'block'; }, 600);
+        }
+
+        function initScratchCard() {
+            const canvas = document.getElementById('scratchCanvas');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#ff66c4'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.font = '16px Fredoka'; ctx.fillStyle = '#ffffff'; ctx.textAlign = 'center';
+            ctx.fillText('✨ GOSOK DI SINI ✨', canvas.width / 2, canvas.height / 2 + 5);
+            let isDrawing = false;
+            function scratch(e) {
+                if(!isDrawing) return;
+                const rect = canvas.getBoundingClientRect();
+                const x = (e.clientX || e.touches[0].clientX) - rect.left;
+                const y = (e.clientY || e.touches[0].clientY) - rect.top;
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.beginPath(); ctx.arc(x, y, 18, 0, Math.PI * 2); ctx.fill();
+            }
+            canvas.addEventListener('mousedown', () => isDrawing = true); canvas.addEventListener('mouseup', () => isDrawing = false); canvas.addEventListener('mousemove', scratch);
+            canvas.addEventListener('touchstart', () => isDrawing = true); canvas.addEventListener('touchend', () => isDrawing = false); canvas.addEventListener('touchmove', scratch);
+        }
+
+        function runTikTokAnimation() {
+            const overlay = document.getElementById('matrixOverlay');
+            const displayText = document.getElementById('bigTextDisplay');
+            overlay.style.display = 'flex';
+            startMatrixRain();
+            const sequence = [
+                { text: '3', duration: 800 }, { text: '2', duration: 800 }, { text: '1', duration: 800 },
+                { text: 'HAPPY', duration: 1000 }, { text: 'BIRTHDAY', duration: 1000 }, { text: 'TO', duration: 800 },
+                { text: 'NAJMAH OKTAVIA', duration: 1400 }, { text: '💖', duration: 1000 }
+            ];
+            let delay = 0;
+            sequence.forEach((item) => {
+                setTimeout(() => { displayText.innerText = item.text; }, delay);
+                delay += item.duration;
+            });
+            setTimeout(() => { overlay.style.display = 'none'; nextPage('love'); }, delay);
+        }
+
+        function startMatrixRain() {
+            const canvas = document.getElementById('matrixCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+            const chars = '0123456789♥💖✨';
+            const fontSize = 16;
+            const columns = canvas.width / fontSize;
+            const drops = Array(Math.floor(columns)).fill(1);
+            function draw() {
+                ctx.fillStyle = 'rgba(13, 2, 10, 0.1)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = '#ff66c4'; ctx.font = fontSize + 'px monospace';
+                for (let i = 0; i < drops.length; i++) {
+                    const text = chars[Math.floor(Math.random() * chars.length)];
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                    drops[i]++;
+                }
+            }
+            setInterval(draw, 33);
+        }
+
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { 
+            document.getElementById(id).style.display = 'none';
+            playlistAudios.forEach(audio => audio.pause());
+            const v = document.getElementById('myVideo');
+            if (v) v.pause();
+            bgMusic.play().catch(() => {});
+            musicBtn.classList.add('playing');
+        }
+
+        playlistAudios.forEach(audio => {
+            audio.addEventListener('play', () => { bgMusic.pause(); musicBtn.classList.remove('playing'); playlistAudios.forEach(other => { if (other !== audio) other.pause(); }); });
+            audio.addEventListener('pause', () => { if (!Array.from(playlistAudios).some(a => !a.paused)) { bgMusic.play().catch(() => {}); musicBtn.classList.add('playing'); } });
+            audio.addEventListener('ended', () => { bgMusic.play().catch(() => {}); musicBtn.classList.add('playing'); });
+        });
+
+        const vElem = document.getElementById('myVideo');
+        if (vElem) {
+            vElem.addEventListener('play', () => { bgMusic.pause(); musicBtn.classList.remove('playing'); });
+            vElem.addEventListener('pause', () => { if (!Array.from(playlistAudios).some(a => !a.paused)) { bgMusic.play().catch(() => {}); musicBtn.classList.add('playing'); } });
+            vElem.addEventListener('ended', () => { bgMusic.play().catch(() => {}); musicBtn.classList.add('playing'); });
+        }
+
+        function nextPage(pageTarget) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById(`page-${pageTarget}`).classList.add('active');
+            if (pageTarget === 'quiz') loadQuiz();
+            else if (pageTarget === 'wheel') setTimeout(drawWheel, 100);
+            else if (pageTarget === 4) setTimeout(initScratchCard, 200);
+        }
+    </script>
+</body>
+</html> 
