@@ -368,7 +368,7 @@
     </div>
 
     <audio id="bgMusic" loop>
-        <source src="assets/song1.mp3" type="audio/mpeg">
+        <source src="song1.mp3" type="audio/mpeg">
     </audio>
 
     <div id="matrixOverlay" class="matrix-overlay">
@@ -579,11 +579,11 @@
             <span class="close-modal" onclick="playPopSound(); closeModal('modal-photos');">&times;</span>
             <h2 style="color: #ff66c4; margin-bottom: 10px;">📸 Our Memories</h2>
             <div class="gallery-grid">
-                <div class="polaroid-card" style="transform: rotate(-3deg);"><img src="assets/foto1.jpg"><div class="polaroid-caption">First Date</div></div>
-                <div class="polaroid-card" style="transform: rotate(2deg);"><img src="assets/foto2.jpg"><div class="polaroid-caption">Day 1 Jadian</div></div>
-                <div class="polaroid-card" style="transform: rotate(-2deg);"><img src="assets/foto3.jpg"><div class="polaroid-caption">Ocean Park</div></div>
-                <div class="polaroid-card" style="transform: rotate(3deg);"><img src="assets/foto4.jpg"><div class="polaroid-caption">Nonton Avengers Endgame</div></div>
-                <div class="polaroid-card" style="transform: rotate(-1deg);"><img src="assets/foto5.jpg"><div class="polaroid-caption">Batik Day</div></div>
+                <div class="polaroid-card" style="transform: rotate(-3deg);"><img src="foto1.jpg"><div class="polaroid-caption">First Date</div></div>
+                <div class="polaroid-card" style="transform: rotate(2deg);"><img src="foto2.jpg"><div class="polaroid-caption">Day 1 Jadian</div></div>
+                <div class="polaroid-card" style="transform: rotate(-2deg);"><img src="foto3.jpg"><div class="polaroid-caption">Ocean Park</div></div>
+                <div class="polaroid-card" style="transform: rotate(3deg);"><img src="foto4.jpg"><div class="polaroid-caption">Nonton Avengers Endgame</div></div>
+                <div class="polaroid-card" style="transform: rotate(-1deg);"><img src="foto5.jpg"><div class="polaroid-caption">Batik Day</div></div>
             </div>
         </div>
     </div>
@@ -596,7 +596,7 @@
 
             <div style="position: relative; width: 100%; max-width: 280px; background: #1a0014; border: 4px solid #ff44b7; border-radius: 24px; padding: 12px; box-shadow: 0 0 25px rgba(255, 68, 183, 0.4); display: flex; flex-direction: column; align-items: center;">
                 <video id="myVideo" controls style="width: 100%; height: 360px; object-fit: cover; border-radius: 16px; background: #000;">
-                    <source id="videoSource" src="assets/video1.mp4" type="video/mp4">
+                    <source id="videoSource" src="video1.mp4" type="video/mp4">
                 </video>
 
                 <p id="videoCaption" style="font-family: 'Great Vibes', cursive; font-size: 1.4rem; color: #ff66c4; margin-top: 10px; text-align: center; text-shadow: 0 0 5px rgba(0,0,0,0.8);">"Momen kecup gemes 💖"</p>
@@ -623,10 +623,10 @@
             <span class="close-modal" onclick="playPopSound(); closeModal('modal-spotify');">&times;</span>
             <h2 style="color: #ff66c4; margin-bottom: 12px;">🎵 Playlist For You</h2>
             <div class="playlist-container">
-                <div class="spotify-card"><div class="song-title">🎧 I Lay My Love On You</div><div class="song-artist">Backstreet Boys</div><audio class="playlist-audio" controls><source src="assets/song1.mp3" type="audio/mpeg"></audio></div>
-                <div class="spotify-card"><div class="song-title">🎧 u + me forever</div><div class="song-artist">Olivia Rodrigo</div><audio class="playlist-audio" controls><source src="assets/song2.mp3" type="audio/mpeg"></audio></div>
-                <div class="spotify-card"><div class="song-title">🎧 Feelings</div><div class="song-artist">Lauv</div><audio class="playlist-audio" controls><source src="assets/song3.mp3" type="audio/mpeg"></audio></div>
-                <div class="spotify-card"><div class="song-title">🎧 Saturday Night</div><div class="song-artist">LANY</div><audio class="playlist-audio" controls><source src="assets/song4.mp3" type="audio/mpeg"></audio></div>
+                <div class="spotify-card"><div class="song-title">🎧 I Lay My Love On You</div><div class="song-artist">Backstreet Boys</div><audio class="playlist-audio" controls><source src="song1.mp3" type="audio/mpeg"></audio></div>
+                <div class="spotify-card"><div class="song-title">🎧 u + me forever</div><div class="song-artist">Olivia Rodrigo</div><audio class="playlist-audio" controls><source src="song2.mp3" type="audio/mpeg"></audio></div>
+                <div class="spotify-card"><div class="song-title">🎧 Feelings</div><div class="song-artist">Lauv</div><audio class="playlist-audio" controls><source src="song3.mp3" type="audio/mpeg"></audio></div>
+                <div class="spotify-card"><div class="song-title">🎧 Saturday Night</div><div class="song-artist">LANY</div><audio class="playlist-audio" controls><source src="song4.mp3" type="audio/mpeg"></audio></div>
             </div>
         </div>
     </div>
@@ -638,9 +638,9 @@
 
         // DATA VIDEO & CAROUSEL LOGIC
         const videoList = [
-            { src: "assets/video1.mp4", caption: "Vlog nonton Avengers Endgame 💖" },
-            { src: "assets/video2.mp4", caption: "Kolam arus ocean park BSD 😜" },
-            { src: "assets/video3.mp4", caption: "Fit check batik day ✨" }
+            { src: "video1.mp4", caption: "Vlog nonton Avengers Endgame 💖" },
+            { src: "video2.mp4", caption: "Kolam arus ocean park BSD 😜" },
+            { src: "video3.mp4", caption: "Fit check batik day ✨" }
         ];
 
         let currentVideoIndex = 0;
